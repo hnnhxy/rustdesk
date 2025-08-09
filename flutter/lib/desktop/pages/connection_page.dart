@@ -78,7 +78,18 @@ class _OnlineStatusWidgetState extends State<OnlineStatusWidget> {
               .marginOnly(left: em),
         );
 
-    setupServerWidget() => Flexible(
+      Widget setupServerWidget() => Flexible(
+              child: offstage(
+                offstage: !(!_svcStopped.value &&
+                    stateGlobal.svcStatus.value == SvcStatus.ready &&
+                    _svcIsUsingPublicServer.value),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [],
+                ),
+              ),
+            );
+/*     setupServerWidget() => Flexible(
           child: Offstage(
             offstage: !(!_svcStopped.value &&
                 stateGlobal.svcStatus.value == SvcStatus.ready &&
@@ -107,7 +118,7 @@ class _OnlineStatusWidgetState extends State<OnlineStatusWidget> {
               ],
             ),
           ),
-        );
+        ); */
 
     basicWidget() => Row(
           crossAxisAlignment: CrossAxisAlignment.center,
